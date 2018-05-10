@@ -33,4 +33,13 @@ var clyde = {
 
 var ghosts = [inky, blinky, pinky, clyde]
 
-console.log(ghosts[0])
+// console.log(ghosts[3])
+
+function cycleGhost(ghosts){
+  for (var i = 0; i < ghosts.length; i++){
+    console.log(ghosts[i])
+  }
+}
+
+// console.log(cycleGhost(ghosts))
+cycleGhost(ghosts)

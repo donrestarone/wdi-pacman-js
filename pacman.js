@@ -39,6 +39,21 @@ var clyde = {
 // replace this comment with your four ghosts setup as objects
 var ghosts = [inky, blinky, pinky, clyde]
 
+function cycleGhost(ghosts){
+  for (var i = 0; i < ghosts.length; i++){
+    return ghosts[i]
+  }
+}
+
+function eatGhost(ghost){
+  if (ghost.edible === true){
+    console.log('ate a ghost')
+  } else if {
+    lives -= 1
+  } else {
+    
+  }
+}
 // Draw the screen functionality
 function drawScreen() {
   clearScreen();
@@ -60,6 +75,7 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat Inky')
   console.log('(q) Quit');
 }
 
@@ -85,6 +101,9 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      console.log('hi 1 works');
       break;
     default:
       console.log('\nInvalid Command!');
