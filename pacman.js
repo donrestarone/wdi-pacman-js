@@ -1,7 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
-
+var powerPellets = 4;
 
 // Define your ghosts here
 var inky = {
@@ -9,7 +9,7 @@ var inky = {
   name: 'Inky',
   colour: 'Red',
   character: 'Shadow',
-  edible: 'false',
+  edible: false ,
 };
 
 var blinky = {
@@ -17,7 +17,7 @@ var blinky = {
   name: 'Blinky',
   colour: 'Cyan',
   character: 'Speedy',
-  edible: 'false',
+  edible: false ,
 }
 
 var pinky = {
@@ -25,7 +25,7 @@ var pinky = {
   name: 'Pinky',
   colour: 'Pink',
   character: 'Bashful',
-  edible: 'false',
+  edible: false ,
 }
 
 var clyde = {
@@ -33,27 +33,47 @@ var clyde = {
   name: 'Clyde',
   colour: 'Orange',
   character: 'Pokey',
-  edible: 'false',
+  edible: false,
 }
 
 // replace this comment with your four ghosts setup as objects
-var ghosts = [inky, blinky, pinky, clyde]
+var ghosts = [inky, blinky, pinky, clyde];
 
-function cycleGhost(ghosts){
+function cycleGhost(){
   for (var i = 0; i < ghosts.length; i++){
-    return ghosts[i]
+    if (ghosts[i].edible === true){
+      var edibility = 'edible'
+    } else if (ghosts[i].edible === false) {
+      var edibility = 'inedible'
+    }
+    console.log('(' + (i + 1) + ') eat ' + ghosts[i].name + ' ' + edibility);
   }
 }
 
 function eatGhost(ghost){
   if (ghost.edible === true){
     console.log('ate a ghost')
-  } else if {
-    lives -= 1
+    score += 200
+    ghost.edible = false
+  } else if (ghost.edible === false) {
+    lives -= 1;
   } else {
-    
+    if(lives === 0){
+      process.exit();
+    }
   }
 }
+
+function eatPowerPellet(){
+  if (powerPellets != 0) {
+    score += 50 
+    powerPellets -= 1
+    for (var i = 0; i < ghosts.length; i++) {
+      ghosts[i].edible = true
+    }
+  }
+}
+
 // Draw the screen functionality
 function drawScreen() {
   clearScreen();
@@ -75,7 +95,7 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  console.log('(1) Eat Inky')
+  cycleGhost() // cycle and display the ghosts
   console.log('(q) Quit');
 }
 
@@ -103,7 +123,16 @@ function processInput(key) {
       eatDot();
       break;
     case '1':
-      console.log('hi 1 works');
+      eatGhost(ghosts[0]);
+      break;
+    case '2':
+      eatGhost(ghosts[1]);
+      break;
+    case '3':
+      eatGhost(ghosts[2]);
+      break;
+    case '4':
+      eatGhost(ghosts[3]);
       break;
     default:
       console.log('\nInvalid Command!');
