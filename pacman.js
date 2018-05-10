@@ -71,6 +71,8 @@ function eatPowerPellet(){
     for (var i = 0; i < ghosts.length; i++) {
       ghosts[i].edible = true
     }
+  } else {
+    console.log('wat')
   }
 }
 
@@ -89,12 +91,13 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log('Score: ' + score + '     Lives: ' + lives + ' Power-Pellets: ' + powerPellets);
 }
 
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(p) Eat Power Pellets')
   cycleGhost() // cycle and display the ghosts
   console.log('(q) Quit');
 }
@@ -121,6 +124,9 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case 'p':
+      eatPowerPellet();
       break;
     case '1':
       eatGhost(ghosts[0]);
